@@ -25,7 +25,6 @@ return new class extends Migration
         
         // Status da negociação [cite: 29, 62]
         $table->enum('status', ['pendente', 'aceito', 'recusado'])->default('pendente');
-        
         $table->timestamps();
     });
 }
