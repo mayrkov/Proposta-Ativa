@@ -24,5 +24,10 @@
                 Enviar Candidatura
             </button>
         </form>
+
+        <h5>Minhas Horas Validadas</h5>
+        <p style="font-size: 24px; font-weight: bold;">{{ $total_horas }}h</p>
     </div>
+
+
 @endforeach
