@@ -36,12 +36,16 @@ class RegisteredUserController extends Controller
             'tipo' => ['required'],
             'identificador' => ['required_if:tipo, Aluno, Professor', 'nullable', 'string', 'max:255'],
             'curso' => ['required_if:tipo, Aluno', 'nullable', 'string', 'max:255'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', 'confirmed', 
+            Rules\Password::defaults()],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'tipo' => $request->tipo,
+            'identificador' => $request->identificador,
+            'curso' => $request->curso, 
             'password' => Hash::make($request->password),
         ]);
 
