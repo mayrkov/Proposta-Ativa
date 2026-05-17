@@ -34,12 +34,17 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        {{-- Perfil --}}
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
-
+                        {{-- Registrar usuário --}}
                         <x-dropdown-link :href="route('register')">
-                            {{ __('Registrar') }}
+                            {{ __('Registrar usuário') }}
+                        </x-dropdown-link>
+                        {{-- Registrar curso --}}
+                        <x-dropdown-link :href="route('curso.criar')">
+                            {{ __('Registrar cruso') }}
                         </x-dropdown-link>
                         
                         <!-- Authentication -->
