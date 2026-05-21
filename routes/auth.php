@@ -32,10 +32,15 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('register', [RegisteredUserController::class, 'create'])
-        ->name('register');
-
-    Route::post('register', [RegisteredUserController::class, 'store']);
+    
+    // Inicio subgrupo de rotas do ADM
+    Route::middleware('adm')->group(function (){
+        Route::get('register', [RegisteredUserController::class, 'create'])
+            ->name('register');
+    
+        Route::post('register', [RegisteredUserController::class, 'store']);
+    });
+    // Fim
 
     Route::get('verify-email', EmailVerificationPromptController::class)
         ->name('verification.notice');

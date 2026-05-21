@@ -40,16 +40,29 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'tipo' => $request->tipo,
-            'identificador' => $request->identificador,
-            'curso' => $request->curso, 
-            'password' => Hash::make($request->password),
-        ]);
+        /** @var \App\Models\ADM $adm */
+        $adm = auth()->user(); // verifica se o usuário logado é ADM
 
-        event(new Registered($user));
+        $adm->criar_conta($request->only([
+            'name',
+            'email', 
+            'tipo', 
+            'identificador', 
+            'curso', 
+            'password'
+        ]));
+
+
+    //     $user = User::create([
+    //         'name' => $request->name,
+    //         'email' => $request->email,
+    //         'tipo' => $request->tipo,
+    //         'identificador' => $request->identificador,
+    //         'curso' => $request->curso, 
+    //         'password' => Hash::make($request->password),
+    //     ]);
+
+    //     event(new Registered($user));
 
         return redirect(route('register'))->with('status', 'Cadastrado com sucesso!');
     }

@@ -33,19 +33,22 @@
                         </button>
                     </x-slot>
 
-                    <x-slot name="content">
+                    <x-slot name="content" x-data="{tipoUsuario: ''}">
                         {{-- Perfil --}}
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
-                        {{-- Registrar usuário --}}
-                        <x-dropdown-link :href="route('register')">
-                            {{ __('Registrar usuário') }}
-                        </x-dropdown-link>
-                        {{-- Registrar curso --}}
-                        <x-dropdown-link :href="route('curso.criar')">
-                            {{ __('Registrar cruso') }}
-                        </x-dropdown-link>
+                        
+                        @if(Auth::user()->tipo === 'ADM')
+                            {{-- Registrar usuário --}}
+                            <x-dropdown-link :href="route('register')">
+                                {{ __('Registrar usuário') }}
+                            </x-dropdown-link>
+                            {{-- Registrar curso --}}
+                            <x-dropdown-link :href="route('curso.criar')">
+                                {{ __('Registrar cruso') }}
+                            </x-dropdown-link>
+                        @endif
                         
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
