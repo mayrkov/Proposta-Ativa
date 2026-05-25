@@ -3,29 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\http\Contraproposta;
-use Illuminate\Support\Facetas\Auth;
+use App\Models\Contraproposta; // Corrigido o caminho para a Model
+use Illuminate\Support\Facades\Auth; // Corrigido Facetas -> Facades
+
 class ContrapropostaController extends Controller
 {
     public function store(Request $request, $postagem_id)
     {
-        //Validaçao de campos vazios
+        // Validação de campos vazios
         $request->validate([
             'justificativa_ajuste' => 'required|min:30',
-            'carga_horaaria_proposta' => 'required|numeric',
+            'carga_horaria_proposta' => 'required|numeric', // Corrigido o "a" a mais
         ]);
 
-        //Salvar No Banco
+        // Salvar No Banco
         Contraproposta::create([
             'postagem_id' => $postagem_id,
-            'aluno_id' => Auth::id(), //pega o id do aluno
-            'justificativa _ajuste' => $request->justificativa_ajuste,
+            'aluno_id' => Auth::id(), // Pega o id do aluno logado
+            'justificativa_ajuste' => $request->justificativa_ajuste, // Removido espaço em branco
             'carga_horaria_proposta' => $request->carga_horaria_proposta, 
             'status' => 'pendente',
         ]);
 
-        //REDIRECIONAR (mensagem de sucesso)
-        return redirect()->back()->green('sucesso', 'Sua poposta foi enviada com sucesso!');
-
+        // REDIRECIONAR com mensagem de sucesso 
+        return redirect()->back()->with('success', 'Sua proposta foi enviada com sucesso!');
     }
 }
