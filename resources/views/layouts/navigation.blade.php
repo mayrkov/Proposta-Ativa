@@ -46,7 +46,7 @@
                             </x-dropdown-link>
                             {{-- Registrar curso --}}
                             <x-dropdown-link :href="route('curso.criar')">
-                                {{ __('Registrar cruso') }}
+                                {{ __('Registrar curso') }}
                             </x-dropdown-link>
                         @endif
                         

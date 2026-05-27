@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
+use App\Http\Controllers\Auth\CursosController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Auth\NewPasswordController;
@@ -39,6 +40,12 @@ Route::middleware('auth')->group(function () {
             ->name('register');
     
         Route::post('register', [RegisteredUserController::class, 'store']);
+
+        Route::get('curso/criar', [CursosController::class, 'criar'])
+        ->name('curso.criar');
+        
+        Route::post('curso/criar', [CursosController::class, 'store'])
+        ->name('curso.store');
     });
     // Fim
 
