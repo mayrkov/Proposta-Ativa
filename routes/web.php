@@ -19,11 +19,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
-    // Criar Cruso
-    Route::middleware('adm')->group( function(){
-        Route::get('/curso/criar', [CursosController::class, 'criar'])->name('curso.criar');
-        Route::post('/curso', [CursosController::class, 'store'])->name('curso.store');
-    });
 });
 
 require __DIR__.'/auth.php';

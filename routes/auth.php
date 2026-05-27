@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
+use App\Http\Controllers\CursosController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Auth\NewPasswordController;
@@ -35,10 +36,11 @@ Route::middleware('auth')->group(function () {
     
     // Inicio subgrupo de rotas do ADM
     Route::middleware('adm')->group(function (){
-        Route::get('register', [RegisteredUserController::class, 'create'])
-            ->name('register');
-    
+        Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
         Route::post('register', [RegisteredUserController::class, 'store']);
+
+        Route::get('/curso/criar', [CursosController::class, 'criar'])->name('curso.criar');
+        Route::post('/curso', [CursosController::class, 'store'])->name('curso.store');
     });
     // Fim
 

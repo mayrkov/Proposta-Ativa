@@ -19,7 +19,7 @@
                             <x-input-error :messages="$errors->get('nome')" class="mt-2" />
                         </div>
             
-                     <!-- Email Address -->
+                     <!-- horas -->
                         <div class="mt-4">
                             <x-input-label for="horas" :value="__('Horas')" />
                             <x-text-input id="horas" class="block mt-1 w-full" type="number" name="horas" :value="old('horas')" required min="1" />
