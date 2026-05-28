@@ -9,6 +9,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Deixei o Dash board apenas para o aluno! esse em especifico
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

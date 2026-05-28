@@ -16,6 +16,12 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            
+            // ⚡ ADICIONADO: Colunas necessárias para o polimorfismo do seu grupo funcionar
+            $table->string('tipo');                      // Guarda se é ADM, Professor ou Aluno
+            $table->string('identificador')->nullable(); // Guarda a matrícula/registro
+            $table->string('curso')->nullable();         // Guarda o curso (caso seja Aluno)
+            
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

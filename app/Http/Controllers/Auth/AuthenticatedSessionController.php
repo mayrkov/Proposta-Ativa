@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -27,6 +28,18 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+
+        //usuario que acabou de logar
+        $user = auth()->user();
+
+        //enviar professor tela de cadastro de cursos
+        if ($user->tipo == 'adm') {
+            return redirect()->route('register');
+        }
+
+        if ($user->tipo == 'professor') {
+            return redirect()->route('curso.criar');
+        }
 
         return redirect()->intended(route('dashboard', absolute: false));
     }

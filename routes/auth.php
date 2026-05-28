@@ -34,21 +34,18 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     
-    // Inicio subgrupo de rotas do ADM
+    //(Apenas ADM cadastra pessoas)
     Route::middleware('adm')->group(function (){
-        Route::get('register', [RegisteredUserController::class, 'create'])
-            ->name('register');
-    
+        Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
         Route::post('register', [RegisteredUserController::class, 'store']);
-
-        Route::get('curso/criar', [CursosController::class, 'criar'])
-        ->name('curso.criar');
-        
-        Route::post('curso/criar', [CursosController::class, 'store'])
-        ->name('curso.store');
     });
-    // Fim
 
+    //Tela de cursos
+    // O professor entra para propor, o ADM entra para gerenciar/gravar
+    Route::get('curso/criar', [CursosController::class, 'criar'])->name('curso.criar');
+    Route::post('curso/criar', [CursosController::class, 'store'])->name('curso.store');
+
+    // Rotas padrão de verificação e segurança
     Route::get('verify-email', EmailVerificationPromptController::class)
         ->name('verification.notice');
 
