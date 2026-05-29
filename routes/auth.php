@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
-use App\Http\Controllers\Auth\CursosController;
+use App\Http\Controllers\CursosController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Auth\NewPasswordController;
@@ -36,14 +36,16 @@ Route::middleware('auth')->group(function () {
     
     //(Apenas ADM cadastra pessoas)
     Route::middleware('adm')->group(function (){
+
+        //Cadastro de usuário
         Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
         Route::post('register', [RegisteredUserController::class, 'store']);
+        
+        //Cadastro de curso  
+        Route::get('curso/criar', [CursosController::class, 'criar'])->name('curso.criar');
+        Route::post('curso/criar', [CursosController::class, 'store'])->name('curso.store');
     });
 
-    //Tela de cursos
-    // O professor entra para propor, o ADM entra para gerenciar/gravar
-    Route::get('curso/criar', [CursosController::class, 'criar'])->name('curso.criar');
-    Route::post('curso/criar', [CursosController::class, 'store'])->name('curso.store');
 
     // Rotas padrão de verificação e segurança
     Route::get('verify-email', EmailVerificationPromptController::class)

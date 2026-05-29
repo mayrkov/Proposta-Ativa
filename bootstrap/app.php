@@ -12,8 +12,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
-            'adm' => \App\Http\Middleware\checkAdm::class,
-            'aluno' => \App\Http\Middleware\checkAluno::class,
+            'adm' => \App\Http\Middleware\CheckAdm::class,
+            'aluno' => \App\Http\Middleware\CheckAluno::class,
         ]);
         
     })
